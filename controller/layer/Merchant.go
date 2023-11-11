@@ -1,41 +1,43 @@
 package layer
 
 import (
+	"fmt"
 	"udhaar/utils"
 	"udhaar/constants"
-
+	"udhaar/models"
 )
 
-func AddUser(command []string) (newUserName string, err error){
-
-	if len(command) != 5{
+func AddMerchant(command []string) (newMerchantDetails string, err error) {
+	if len(command) != 4 {
 		err = constants.ErrInvalidCommand
 		return
 	}
 	name, err := utils.IsValidName(command[2])
-
 	if err != nil {
 		return
 	}
-	email, err := utils.IsValidEmail(command[3])
+	discount, err := utils.IsValidDiscount(command[3])
 	if err != nil {
 		return
 	}
-	creditLimit,err := utils.IsValidCreditLimit(command[4])
-	_,ok := models.UserMap[email]
-	if ok{
-		err=constants.ErrUserAlreadyExists
+
+	_, ok := models.MerchantMap[name]
+	if ok {
+		err = constants.ErrMerchantAlreadyExists
 		return
 	}
 
-	newUser := models.User{
-		Name: name,
-		Email: email,
-		CreditLimit: creditLimit,
+	newMerchant := models.Merchant{
+		UniqueName:      name,
+		DiscountOffered: discount,
 	}
 
-	models.UserMap[email]=newUser
+	models.MerchantMap[name] = newMerchant
 
-	newUserName = newUser.Name
+	newMerchantDetails = fmt.Sprintf(
+		"%v (%v)",
+		newMerchant.UniqueName,
+		newMerchant.DiscountOffered,
+	)
 	return
 }

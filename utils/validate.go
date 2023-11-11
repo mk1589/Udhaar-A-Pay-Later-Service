@@ -34,3 +34,14 @@ import(
 	}
 	return creditLimitFloat, nil
  }
+
+ func IsValidDiscount(discountString string) (float64, error) {
+	if discountString[len(discountString)-1] != '%' {
+		return 0.0, constants.ErrInvalidDiscount
+	}
+	discount := cast.ToFloat64(discountString)
+	if discount <= 0 || discount > 100 {
+		return 0.0, constants.ErrInvalidDiscount
+	}
+	return discount, nil
+}
