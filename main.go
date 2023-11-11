@@ -57,6 +57,8 @@ func main() {
 		arg, err = layer.AddMerchant(command)
 		operationCode = constants.AddMerchant
 	case constants.NewTxn:
+		arg, err = layer.NewTxn(command)
+		operationCode = constants.Txn
 	case constants.UpdateMerchant:
 	case constants.PayBack:
 	case constants.ReportDiscount:
