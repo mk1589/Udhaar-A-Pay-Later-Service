@@ -5,7 +5,7 @@ import(
 	"udhaar/constants"
 	"udhaar/utils"
 	"udhaar/models"
-	// "github.com/spf13/cast"
+	"github.com/spf13/cast"
 )
 
 func AddUser(command []string) (newUserName string, err error){
@@ -68,5 +68,43 @@ func GetUserAtCreditLimit(command []string)(listAsString string , err error){
 	}else{
 		listAsString="There is no user at limit right now\n"
 	}
+	return
+}
+
+func ShowUserDues(command []string) (duesString string, err error) {
+	/*
+		report dues <user-email>
+	*/
+
+	if len(command) != 3 {
+		err = constants.ErrInvalidCommand
+		return
+	}
+	/*
+		userEmail := command[2]
+
+		// check if the user/merchant exists or not
+
+		userObject, isUserExist := models.UserMap[userEmail]
+
+		// if the user doesn't exist
+		if !isUserExist {
+			err = constants.ErrUserMissing
+			return
+		}
+		duesString = cast.ToString(userObject.Dues)
+	*/
+	return
+}
+
+func GetTotalDues(command []string) (totalDuesString string, err error) {
+	totalDues := 0.0
+	// sum	the total dues of the users
+
+	for _, userObj := range models.UserMap {
+		totalDues += userObj.Dues
+	}
+
+	totalDuesString = cast.ToString(totalDues)
 	return
 }

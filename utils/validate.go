@@ -40,7 +40,7 @@ import(
 		return 0.0, constants.ErrInvalidDiscount
 	}
 	discount := cast.ToFloat64(discountString)
-	if discount <= 0 || discount > 100 {
+	if (discount <= 0 || discount > 100) {
 		return 0.0, constants.ErrInvalidDiscount
 	}
 	return discount, nil

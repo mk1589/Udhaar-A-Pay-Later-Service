@@ -60,14 +60,24 @@ func main() {
 		arg, err = layer.NewTxn(command)
 		operationCode = constants.Txn
 	case constants.UpdateMerchant:
+		arg, err = layer.UpdateMerchant(command)
+		operationCode = constants.UpdateDiscount
 	case constants.PayBack:
+		arg, err = layer.PayBack(command)
+		operationCode = constants.Payback
 	case constants.ReportDiscount:
+		arg, err = layer.GetDiscount(command)
+		operationCode = constants.GetTotalMerchantDiscount
 	case constants.ReportDues:
+		arg, err = layer.ShowUserDues(command)
+		operationCode = constants.GetUserDues
 	case constants.ReportUserAtCreditLimit:
 		arg, err = layer.GetUserAtCreditLimit(command)
 		operationCode = constants.GetUsersAtLimit
 
 	case constants.ReportTotalDuse:
+		arg, err = layer.GetTotalDues(command)
+		operationCode = constants.GetTotalDues
 	default:
 		err = constants.ErrInvalidCommand
 	}
