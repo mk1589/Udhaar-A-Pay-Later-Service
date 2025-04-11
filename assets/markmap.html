@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.10/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/index.js"></script><script>(()=>{setTimeout(()=>{const{markmap:x,mm:K}=window,P=new x.Toolbar;P.attach(K);const F=P.render();F.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(F)})})()</script><script>((b,L,T,D)=>{const H=b();window.mm=H.Markmap.create("svg#mindmap",(L||H.deriveOptions)(D),T)})(()=>window.markmap,null,{"content":"Udhaar - A Pay Later Service","children":[{"content":"main.go","children":[{"content":"Entry point","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"CLI routing","children":[],"payload":{"tag":"li","lines":"4,6"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"controller/layer/","children":[{"content":"Business logic","children":[],"payload":{"tag":"li","lines":"7,8"}},{"content":"Handles CLI commands","children":[{"content":"Add user","children":[],"payload":{"tag":"li","lines":"9,10"}},{"content":"Record transaction","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"Settle payments","children":[],"payload":{"tag":"li","lines":"11,13"}}],"payload":{"tag":"li","lines":"8,13"}}],"payload":{"tag":"h2","lines":"6,7"}},{"content":"models/","children":[{"content":"In-memory data models","children":[{"content":"Users","children":[],"payload":{"tag":"li","lines":"15,16"}},{"content":"Transactions","children":[],"payload":{"tag":"li","lines":"16,17"}},{"content":"Balances","children":[],"payload":{"tag":"li","lines":"17,19"}}],"payload":{"tag":"li","lines":"14,19"}}],"payload":{"tag":"h2","lines":"13,14"}},{"content":"constants/","children":[{"content":"Predefined values","children":[{"content":"Error messages","children":[],"payload":{"tag":"li","lines":"21,22"}},{"content":"Command keywords","children":[],"payload":{"tag":"li","lines":"22,24"}}],"payload":{"tag":"li","lines":"20,24"}}],"payload":{"tag":"h2","lines":"19,20"}},{"content":"utils/","children":[{"content":"Helper functions","children":[{"content":"Input validation","children":[],"payload":{"tag":"li","lines":"26,27"}},{"content":"Data formatting","children":[],"payload":{"tag":"li","lines":"27,28"}},{"content":"Parsing","children":[],"payload":{"tag":"li","lines":"28,30"}}],"payload":{"tag":"li","lines":"25,30"}}],"payload":{"tag":"h2","lines":"24,25"}},{"content":"go.mod / go.sum","children":[{"content":"Go module definitions","children":[],"payload":{"tag":"li","lines":"31,32"}},{"content":"Dependency tracking","children":[],"payload":{"tag":"li","lines":"32,33"}}],"payload":{"tag":"h2","lines":"30,31"}}],"payload":{"tag":"h1","lines":"0,1"}},null)</script>
+</body>
+</html>
