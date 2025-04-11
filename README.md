@@ -20,7 +20,40 @@ A simple terminal-based **Pay-Later** application written in Go, allowing users 
 ---
 
 ## 📦 Project Structure
-![Udhaar Flowchart](./assets/udhaar-flowchart.svg)
+# Udhaar - A Pay Later Service
+
+## main.go
+- Entry point
+- CLI routing
+
+## controller/layer/
+- Business logic
+- Handles CLI commands
+  - Add user
+  - Record transaction
+  - Settle payments
+
+## models/
+- In-memory data models
+  - Users
+  - Transactions
+  - Balances
+
+## constants/
+- Predefined values
+  - Error messages
+  - Command keywords
+
+## utils/
+- Helper functions
+  - Input validation
+  - Data formatting
+  - Parsing
+
+## go.mod / go.sum
+- Go module definitions
+- Dependency tracking
+
 
 
 ---
