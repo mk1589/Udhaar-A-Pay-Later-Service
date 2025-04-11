@@ -20,7 +20,8 @@ A simple terminal-based **Pay-Later** application written in Go, allowing users 
 ---
 
 ## 📦 Project Structure
-![Udhaar Flowchart](./constants/markmap.svg)
+![Udhaar Flowchart](./assets/udhaar-flowchart.svg)
+
 
 ---
 
@@ -90,5 +91,7 @@ report total-dues
   - `exit`
   - `quit`
   - `stop`
+
+
 
 
