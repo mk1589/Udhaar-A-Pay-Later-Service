@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-Udhaar-A-Pay-Later-Service
-$ go mod init udhaar $ go mod tidy $ go run main.go
-=======
 
 # 💳 Udhaar-A-Pay-Later-Service
 
@@ -95,4 +91,4 @@ report total-dues
   - `quit`
   - `stop`
 
->>>>>>> 4d80216 (fixed CLI command parsing, discount bug, and user/merchant key consistency)
+
