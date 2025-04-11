@@ -7,18 +7,16 @@ var ExitCommand = map[string]bool{
 	"stop": true,
 }
 
-
 //user command
 
-
-const(
-	NewUser = "new user"
-	NewMerchant="new merchant"
-	NewTxn="new txn" // new transaction
-	UpdateMerchant ="update merchant"
-	PayBack ="payback"
-	ReportDiscount="report dicount"
-	ReportDues ="report dues"
-	ReportUserAtCreditLimit="report user-at-credit-limit"
-	ReportTotalDuse = "report total-dues"
+const (
+	NewUser                 = "new user"
+	NewMerchant             = "new merchant"
+	NewTxn                  = "new txn" // new transaction
+	UpdateMerchant          = "update merchant"
+	PayBack                 = "payback"
+	ReportDiscount          = "report discount"
+	ReportDues              = "report dues"
+	ReportUserAtCreditLimit = "report users-at-credit-limit"
+	ReportTotalDuse         = "report total-dues"
 )

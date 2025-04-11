@@ -1,14 +1,13 @@
 package layer
 
 import (
-	
 	"udhaar/constants"
-	
+
 	"udhaar/models"
+
 	"github.com/google/uuid"
 	"github.com/spf13/cast"
 )
-
 
 func NewTxn(command []string) (txnIdString string, err error) {
 	if len(command) != 5 {
@@ -16,11 +15,10 @@ func NewTxn(command []string) (txnIdString string, err error) {
 		return
 	}
 
-	userEmail := command[2]
+	userName := command[2]
+	userObject, isUserExist := models.UserMap[userName]
+
 	merchantName := command[3]
-
-
-	userObject, isUserExist := models.UserMap[userEmail]
 
 	if !isUserExist {
 		err = constants.ErrUserMissing
@@ -29,7 +27,7 @@ func NewTxn(command []string) (txnIdString string, err error) {
 
 	merchantObj, isMerchantExists := models.MerchantMap[merchantName]
 
-	if isMerchantExists {
+	if !isMerchantExists {
 		err = constants.ErrMerchantMissing
 		return
 	}
@@ -54,27 +52,23 @@ func NewTxn(command []string) (txnIdString string, err error) {
 	merchantObj.TotalDiscount += discountOffered
 	txnId, err := uuid.NewUUID()
 	txnIdString = cast.ToString(txnId)
-	// userObject.TransactionID = append(userObject.TransactionID, txnId)
-	// merchantObj.TransactionID = append(merchantObj.TransactionID, txnId)
+	userObject.TransactionID = append(userObject.TransactionID, txnId)
+	merchantObj.TransactionID = append(merchantObj.TransactionID, txnId)
 
 	return
 }
 
 func PayBack(command []string) (userDetails string, err error) {
-	// payback <user-email> 300
+	// payback <user-name> 300
 
 	if len(command) != 3 {
 		err = constants.ErrInvalidCommand
 		return
 	}
 
-	userEmail := command[1]
+	userName := command[1]
+	userObject, isUserExist := models.UserMap[userName]
 
-	
-
-	userObject, isUserExist := models.UserMap[userEmail]
-
-	
 	if !isUserExist {
 		err = constants.ErrUserMissing
 		return
@@ -86,10 +80,10 @@ func PayBack(command []string) (userDetails string, err error) {
 		err = constants.ErrInvalidAmount
 		return
 	}
-	
+
 	userObject.Dues -= amount
 
-	models.UserMap[userEmail] = userObject
+	models.UserMap[userName] = userObject
 
 	return
 }

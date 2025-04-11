@@ -1,16 +1,17 @@
 package layer
 
-import(
+import (
 	"fmt"
 	"udhaar/constants"
-	"udhaar/utils"
 	"udhaar/models"
+	"udhaar/utils"
+
 	"github.com/spf13/cast"
 )
 
-func AddUser(command []string) (newUserName string, err error){
+func AddUser(command []string) (newUserName string, err error) {
 
-	if len(command) != 5{
+	if len(command) != 5 {
 		err = constants.ErrInvalidCommand
 		return
 	}
@@ -23,50 +24,50 @@ func AddUser(command []string) (newUserName string, err error){
 	if err != nil {
 		return
 	}
-	creditLimit,err := utils.IsValidCreditLimit(command[4])
-	_,ok := models.UserMap[email]
-	if ok{
-		err=constants.ErrUserAlreadyExists
+	creditLimit, err := utils.IsValidCreditLimit(command[4])
+	_, ok := models.UserMap[email]
+	if ok {
+		err = constants.ErrUserAlreadyExists
 		return
 	}
 
 	newUser := models.User{
-		Name: name,
-		Email: email,
+		Name:        name,
+		Email:       email,
 		CreditLimit: creditLimit,
 	}
 
-	models.UserMap[email]=newUser
+	models.UserMap[name] = newUser
 
 	newUserName = newUser.Name
 	return
 }
 
-func GetUserAtCreditLimit(command []string)(listAsString string , err error){
+func GetUserAtCreditLimit(command []string) (listAsString string, err error) {
 
-	if len(command) != 2{
+	if len(command) != 2 {
 		err = constants.ErrInvalidCommand
 		return
 	}
 
-	if len(models.UserMap)>0{
-		for _,user := range models.UserMap{
-			if user.Dues == user.CreditLimit{
+	if len(models.UserMap) > 0 {
+		for _, user := range models.UserMap {
+			if user.Dues == user.CreditLimit {
 				listAsString += fmt.Sprintf("\n%v %v", user.Name, user.Email)
 			}
 		}
 
-	}else{
-		err=constants.ErrUserListEmpty
+	} else {
+		err = constants.ErrUserListEmpty
 	}
 
-	if len(listAsString)>0{
-		listAsString= fmt.Sprintf(
+	if len(listAsString) > 0 {
+		listAsString = fmt.Sprintf(
 			"The list of users at credit limit is as follows: \n%v",
 			listAsString,
 		)
-	}else{
-		listAsString="There is no user at limit right now\n"
+	} else {
+		listAsString = "There is no user at limit right now\n"
 	}
 	return
 }
@@ -80,20 +81,19 @@ func ShowUserDues(command []string) (duesString string, err error) {
 		err = constants.ErrInvalidCommand
 		return
 	}
-	/*
-		userEmail := command[2]
 
-		// check if the user/merchant exists or not
+	// check if the user/merchant exists or not
 
-		userObject, isUserExist := models.UserMap[userEmail]
+	userName := command[2]
+	userObject, isUserExist := models.UserMap[userName]
 
-		// if the user doesn't exist
-		if !isUserExist {
-			err = constants.ErrUserMissing
-			return
-		}
-		duesString = cast.ToString(userObject.Dues)
-	*/
+	// if the user doesn't exist
+	if !isUserExist {
+		err = constants.ErrUserMissing
+		return
+	}
+	duesString = cast.ToString(userObject.Dues)
+
 	return
 }
 
